@@ -44,7 +44,7 @@
     }
 
     // Consulta los autores existentes para mostrarlos en el select múltiple
-    $autores_db = mysqli_query($conn, "SELECT id, nombre FROM autor");
+    $autores_db = mysqli_query($conn, "SELECT id, nombre FROM autor ORDER BY nombre ASC");
 
     // PROCESAMIENTO EN EL POST
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
