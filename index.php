@@ -5,7 +5,7 @@
     <title>Librería inicio</title>
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
-<body>
+<body class="bg-secondary">
 
 <nav class="navbar  navbar-expand-lg bg-dark navbar-dark justify-content-center p-3">
   <ul class="navbar-nav">

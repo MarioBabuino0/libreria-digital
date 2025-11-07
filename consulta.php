@@ -37,18 +37,20 @@
             <?php
             $conn = mysqli_connect("db", "root", "root_password", "libreria");
             $sql = "SELECT libro.titulo, libro.fecha_pub, libro.imagen,
-                           GROUP_CONCAT(autor.nombre SEPARATOR ', ') AS autores
+            -- uso de GROUP_CONCAT para concatenar varios autores en una sola cadena separada por comas, agrupando por libro.id
+                    GROUP_CONCAT(autor.nombre SEPARATOR ', ') AS autores
                     FROM libro
                     JOIN LibroAutor ON libro.id = LibroAutor.idLibro
                     JOIN autor ON LibroAutor.idAutor = autor.id
                     GROUP BY libro.id";
+
             $res = mysqli_query($conn, $sql);
             while($row = mysqli_fetch_assoc($res)){
                 $img = $row['imagen'] ? base64_encode($row['imagen']) : '';
                 echo "<tr>
-                        <td>" . htmlspecialchars($row['titulo']) . "</td>
-                        <td>" . htmlspecialchars($row['autores']) . "</td>
-                        <td>" . htmlspecialchars($row['fecha_pub']) . "</td>
+                        <td>" . $row['titulo'] . "</td>
+                        <td>" . $row['autores'] . "</td>
+                        <td>" . $row['fecha_pub'] . "</td>
                         <td>";
                 if($img){
                     echo "<img src='data:image/jpeg;base64,$img' style='max-width:80px;max-height:120px' />";
